@@ -1,0 +1,152 @@
+.immerse-explainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    background-color: #ffffff;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header-bar {
+  background-color: #fff;
+border-bottom: 1px solid #c65858;
+  width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-bar__title {
+    font-size: 1.5rem;
+  align-items: center;
+    color: #d51717;
+}
+
+.context-panel{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    /*overflow: auto;*/
+    /*padding: 10px;*/
+    /*align-content: center;*/
+}
+
+.textArea{
+    width: calc(100% - 20px);;
+    margin:10px;
+    /*padding: 10px;*/
+}
+
+
+.context-panel-tools{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.tool{
+    margin: 10px;
+}
+
+.icon{
+    width: 1em;
+    height: 1em;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.result-panel{
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.selected-words{
+    white-space: normal;
+    height: 140px;
+    /*overflow: scroll;*/
+    width: calc(100% - 20px);
+    /*padding: 0px;*/
+    /*margin: 10px;*/
+    /*display: flex;*/
+    justify-content: flex-end;
+    margin: 10px;
+    overflow: auto;
+}
+
+.word{
+    background-color: #e3dbdb;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.selected-word__tools{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.phrase-to-be-queried__phrase{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.selected-words-for-current-phrase-panel{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.status-panel{
+    position: relative;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*align-content: center;*/
+    width: 100%;
+    margin-bottom: 10px;
+    /*text-align: center;*/
+}
+
+.status-panel__status{
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 50%;*/
+    width: 50%;
+    margin: auto;
+    z-index: 99;
+    background-color: #e84949;
+    text-align: center;
+}
+
+.anki-tool-panel{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+
+

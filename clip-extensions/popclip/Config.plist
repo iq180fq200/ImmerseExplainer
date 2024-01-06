@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Actions</key>
+        <array>
+            <dict>
+                <key>Shell Script File</key>
+                <string>immerseExplainer.sh</string>
+                <key>Image File</key>
+                <string>appLogo.png</string>
+                <key>Title</key>
+                <string>Immerse Explainer</string>
+            </dict>
+        </array>
+        <key>Credits</key>
+        <array>
+            <dict>
+                <key>Link</key>
+                <string>https://github.com/iq180fq200/ImmerseExplainer</string>
+                <key>Name</key>
+                <string>Immerse Explainer</string>
+            </dict>
+        </array>
+        <key>Extension Description</key>
+        <string>Context-Aware text Explainer with OpenAI API, easy to add into Anki for memorize</string>
+        <key>Extension Identifier</key>
+        <string>hanxif.apps.immerse-explainer.clip-extensions.popclip</string>
+        <key>Extension Image File</key>
+        <string>icon.png</string>
+        <key>Extension Name</key>
+        <string>Immerse Explainer</string>
+        <key>Required OS Version</key>
+        <string>10.13</string>
+    </dict>
+</plist>

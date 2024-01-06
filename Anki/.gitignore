@@ -1,0 +1,6 @@
+#ide
+.idea/
+
+build/
+dist/
+__pycache__/
