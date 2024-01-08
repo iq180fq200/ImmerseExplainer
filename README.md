@@ -21,8 +21,21 @@ Install ANKI, a popular memory-curve based flashcard app to your computer. You c
 ## 2. Add AnkiConnect add-on to ANKI
 AnkiConnect is a plugin for Anki that allows other programs to connect to Anki's database. You can download and install it by following the instructions [here](https://ankiweb.net/shared/info/2055492159).
 ## 3. Install Immerse Explainer
-Download the latest version of Immerse Explainer from [here](https://github.com/iq180fq200/ImmerseExplainer/releases/download/v0.0/Immerse_Explainer-darwin-arm64-7.8.0.zip) and install it to your computer.
-## 4. Optional: Install PopClip
+Download the latest version of Immerse Explainer from [here](https://github.com/iq180fq200/ImmerseExplainer/releases/download/v0.0/Immerse_Explainer-darwin-arm64-7.8.0.zip) . Then, follow the instructions below to install it:
+- Unzip the downloaded file by double-clicking it. Then you should get the following:
+  <p align="center">
+      <img width="400" alt="image" src="./assets/images/unzip.png">
+  </p>
+- Open the directory in the terminal
+    <p align="center">
+        <img width="400" alt="image" src="./assets/images/openTerminal.png">
+    </p>
+- Run the following command in the terminal:
+    ```bash
+    xattr -cr Immerse_Explainer.app
+    ```
+- Double click the Immerse_Explainer.app to open it.
+## 4. Optional: Install Immerse Explainer PopClip Extension
 If you want to have your selected text automatically pasted to Immerse Explainer, you can install PopClip and the Immerse Explainer PopClip extension by following the instructions [here](./PopClip.md)
 <br>
 
