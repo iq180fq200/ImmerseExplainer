@@ -54,10 +54,16 @@ export class GPTExplainer {
   }
 
   private generatePrompt() {
-    const strPhrases = this.phrases.join('and')
-    let prompt = 'What do "' + strPhrases + '" mean in "' + this.context + '"? '
-    prompt += 'Use as little token as possible to explain'
-    return prompt
+    if(this.phrases.length != 0 && this.phrases[0] != ''){
+      const strPhrases = this.phrases.join('and')
+      let prompt = 'What do "' + strPhrases + '" mean in "' + this.context + '"? '
+      prompt += 'Use as little token as possible to explain'
+      return prompt
+    }else{
+      let prompt = 'Explain "' + this.context + '"'
+      prompt += 'Use as little token as possible to explain'
+      return prompt
+    }
   }
 
   async getExplanation() {

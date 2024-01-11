@@ -24,17 +24,18 @@ export async function handleAddFlashcard(
     executablePath = path.join(process.resourcesPath, 'updateDeck');
   }
   const str_word_indexes = word_indexes.map((index) => index.toString());
-
   const args = [
     '--context',
     "\"" + context + "\"",
-    '--word_indexes',
-      ...str_word_indexes,
     '--explanation',
     "\"" + explanation + "\"",
     // '--mp3_file',
     // audioFile,
   ];
+  if(str_word_indexes.length !== 0){
+    args.push('--word_indexes')
+    args.push(...str_word_indexes)
+  }
   logger.info(`add to AnKi exec: ${executablePath} ${args.join(' ')}`);
 
 

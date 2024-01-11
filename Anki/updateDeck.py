@@ -3,6 +3,7 @@ import argparse
 import os
 
 from connectAnki import update_deck
+from deckManager import get_deck_id
 
 
 def underline_words(context, indexes):
@@ -104,9 +105,12 @@ if __name__ == "__main__":
         description="enter the context, word indexes, explanation and optional mp3 file of the phrase you want to add "
                     "to the deck")
     parser.add_argument("--context", type=str, help="the context of the phrase")
-    parser.add_argument("--word_indexes", nargs='+', type=int, help="the phrase")
+    parser.add_argument("--word_indexes", nargs='+', type=int, help="the phrase", required=False)
     parser.add_argument("--explanation", type=str, help="the explanation of the phrase")
+    parser.add_argument("--level", type=str, default='both', help="the mastery level of the phrase",choices=['application','understanding','both'])
+    parser.add_argument('--deck_name', type=str, default='Immerse Explainer', help="the name of the deck")
     parser.add_argument("--mp3_file", type=str, required=False, help="the mp3 file of the phrase")
+    args = parser.parse_args()
 
     # get user home directory
     home = os.path.expanduser("~")
@@ -116,21 +120,22 @@ if __name__ == "__main__":
 
     # create tempt deck
     my_deck = genanki.Deck(
-        2059400110,
-        'Immerse Explainer')
+        get_deck_id(args.deck_name),
+        args.deck_name)
     # create model
     fill_in_model = create_fill_in_model()
     qa_model = create_qa_model()
     # create note
-    args = parser.parse_args()
     if args.mp3_file is None:
-        fill_in_note, qa_note = create_notes(fill_in_model, qa_model, args.context, args.word_indexes, args.explanation)
+        fill_in_note, qa_note = create_notes(fill_in_model, qa_model, args.context, args.word_indexes if args.word_indexes else [], args.explanation)
     else:
         fill_in_note, qa_note = create_notes(fill_in_model, qa_model, args.context, args.word_indexes, args.explanation,
                                              "[sound:" + args.mp3_file + "]")
     # add note to deck
-    my_deck.add_note(fill_in_note)
-    my_deck.add_note(qa_note)
+    if args.level == 'application' or args.level == 'both':
+        my_deck.add_note(fill_in_note)
+    if args.level == 'understanding' or args.level == 'both':
+        my_deck.add_note(qa_note)
     # create package
     if args.mp3_file is None:
         genanki.Package(my_deck).write_to_file(temp_file_dir + 'temp.apkg')

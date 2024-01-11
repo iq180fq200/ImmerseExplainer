@@ -39,16 +39,10 @@ function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
   }
 
   async function handleSearchSelectedWords() {
-    if(props.selectedWordsIdx.length == 0){
-      return
-    }
-    props.handleExplain(props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '))
+    props.handleExplain(props.selectedWordsIdx.length === 0? "" :props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '))
   }
 
   async function handleTranslateSelectedWords() {
-    if(props.selectedWordsIdx.length == 0){
-      return
-    }
     props.handleTranslate(props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '))
   }
 

@@ -41,7 +41,7 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
   }, []); // Empty dependency array ensures this runs once on mount and once on unmount
 
   async function handleExplain(QueryPhrase: string){
-    if (QueryPhrase.length > 0 && context.length > 0) {
+    if (context.length > 0) {
       setStatus('explaining')
       try {
         const _explanation = (await appAPI.explain(
@@ -67,7 +67,7 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
   }
 
   async function handleAddToAnki() {
-    if (context.length && selectedWordsIdx.length > 0 && explanation.length > 0) {
+    if (context.length && explanation.length > 0) {
       try{
         const result = await appAPI.addToAnki(context.replace(/[.,;:!?-]/g, (match) => " " + match), selectedWordsIdx, explanation) as IPCReply
         // TODO: if audioFilePath is null, get the audio
@@ -88,11 +88,11 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
   }
 
   async function handleTranslate(QueryPhrase: string){
-    if (QueryPhrase.length > 0) {
+    if (context.length > 0) {
       setStatus('Translating to Chinese')
       try {
         const _translation = (await appAPI.translate(
-          QueryPhrase
+          QueryPhrase.length > 0?QueryPhrase:context
         )) as IPCReply
         if (_translation.status === 200) {
           setStatus('translated')
