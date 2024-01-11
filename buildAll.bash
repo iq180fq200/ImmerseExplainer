@@ -8,4 +8,4 @@ echo "Building Python Anki connector"
 cd ../
 rm -rf Anki/build/
 rm -rf Anki/dist/
-cd Anki && source .env/bin/activate && pyinstaller --onefile updateDeck.py && pyinstaller --onefile EdgeTTS.py
+cd Anki && source .env/bin/activate && pyinstaller --onefile updateDeck.py && pyinstaller --onefile EdgeTTS.py && pyinstaller --onefile ProxyServer.py
