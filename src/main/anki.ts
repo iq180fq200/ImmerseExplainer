@@ -13,7 +13,9 @@ export async function handleAddFlashcard(
   context: string,
   word_indexes: number[],
   explanation: string,
-  // audioFile?: string
+  // audioFile?: string,
+  deckName: string,
+  includeCloze: boolean
 ) {
   let executablePath;
   if (process.env.NODE_ENV === 'development') {
@@ -26,11 +28,15 @@ export async function handleAddFlashcard(
   const str_word_indexes = word_indexes.map((index) => index.toString());
   const args = [
     '--context',
-    "\"" + context + "\"",
+    context,
     '--explanation',
-    "\"" + explanation + "\"",
+    explanation,
     // '--mp3_file',
     // audioFile,
+    '--deck_name',
+    deckName,
+    '--level',
+    includeCloze && str_word_indexes.length !== 0?"both":"understanding",
   ];
   if(str_word_indexes.length !== 0){
     args.push('--word_indexes')

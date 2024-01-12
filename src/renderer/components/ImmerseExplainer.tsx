@@ -1,4 +1,4 @@
-import { Button, Input, message } from 'antd';
+import { Input, message } from 'antd';
 import {
   CopyOutlined,
   DeleteOutlined,
@@ -11,6 +11,7 @@ import { PhraseSelectionPanel } from './PhraseSelectionPanel'
 import './ImmerseExplainer.css'
 import { IPCReply } from '@common/IPCReply';
 import appAPI from '@renderer/rendererContextApi';
+import { AnkiToolPanel } from '@components/AnkiToolPanel';
 
 const { TextArea } = Input
 
@@ -66,10 +67,10 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
     }
   }
 
-  async function handleAddToAnki() {
+  async function handleAddToAnki(deckName: string, includeFillInBlankCard: boolean){
     if (context.length && explanation.length > 0) {
       try{
-        const result = await appAPI.addToAnki(context.replace(/[.,;:!?-]/g, (match) => " " + match), selectedWordsIdx, explanation) as IPCReply
+        const result = await appAPI.addToAnki(context.replace(/([.,;:!?-]) /g, (match) => " " + match), selectedWordsIdx, explanation,deckName,includeFillInBlankCard) as IPCReply
         // TODO: if audioFilePath is null, get the audio
         if (result.status === 200) {
           message.info("Added to Anki")
@@ -153,7 +154,7 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
 
   const resultPanel = <div className="result-panel">{explanation}</div>
 
-  const ankiToolPanel = <div className="anki-tool-panel"><Button onClick={() => handleAddToAnki()}>Add to Anki</Button></div>
+  const ankiToolPanel = <AnkiToolPanel handleAddToAnki={handleAddToAnki}/>
 
   const footPanel = <div className="footer"><SettingOutlined onClick={() => props.setIsInSetting(true)}/></div>
 

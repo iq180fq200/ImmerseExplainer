@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { config } from '@main/config';
+import { IPCReply } from '@common/IPCReply';
 
 export function retrieveStoredAPIKey(){
   const dir: string = path.join(os.homedir(),".ImmerseExplainer");
@@ -25,4 +26,22 @@ export function storeAPIKey(key: string){
   const APIFile: string = path.join(dir,"APIKey.txt");
   fs.writeFileSync(APIFile,key);
   logger.info("API key stored at: "+APIFile);
+}
+
+export function getDeckNameList() {
+  const dir: string = path.join(os.homedir(), ".ImmerseExplainer");
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const deckNameFile: string = path.join(dir, "deck_mapping.txt");
+  let list: string[] = [];
+  if (fs.existsSync(deckNameFile)) {
+    const deckName: string = fs.readFileSync(deckNameFile, "utf-8");
+    const maps = deckName.split("\n");
+    list = maps.map((map) => map.split(",")[0]);
+  }
+  return {
+    status: 200,
+    content: list,
+  } as IPCReply;
 }

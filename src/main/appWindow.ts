@@ -6,7 +6,7 @@ import { config } from '@main/config';
 import { logger } from '@main/logger';
 import { IPCReply } from '@common/IPCReply';
 import { handleTranslate } from '@main/translator';
-import { storeAPIKey } from '@main/io';
+import { getDeckNameList, storeAPIKey } from '@main/io';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
@@ -23,7 +23,7 @@ export function createAppWindow(): BrowserWindow {
   // Create new window instance
   appWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 800,
     backgroundColor: '#FFFFFF',
     show: false,
     autoHideMenuBar: true,
@@ -31,7 +31,7 @@ export function createAppWindow(): BrowserWindow {
     titleBarStyle: 'hidden',
     icon: path.resolve('assets/icons/appLogo.png'),
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       nodeIntegrationInWorker: false,
       nodeIntegrationInSubFrames: false,
@@ -97,4 +97,5 @@ function registerMainIPC() {
       content: config.APIKEY,
     } as IPCReply
   })
+  ipcMain.handle('getDeckNames',getDeckNameList)
 }

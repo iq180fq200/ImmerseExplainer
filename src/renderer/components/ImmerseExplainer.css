@@ -136,8 +136,12 @@ border-bottom: 1px solid #c65858;
 
 .anki-tool-panel{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin: 10px;
+}
+
+.create-anki-deck{
+    display: flex;
 }
 
 .footer{
