@@ -41,13 +41,14 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
     };
   }, []); // Empty dependency array ensures this runs once on mount and once on unmount
 
-  async function handleExplain(QueryPhrase: string){
+  async function handleExplain(QueryPhrase: string, sciMode: boolean){
     if (context.length > 0) {
       setStatus('explaining')
       try {
         const _explanation = (await appAPI.explain(
           context,
-          [QueryPhrase]
+          [QueryPhrase],
+          sciMode
         )) as IPCReply
         if (_explanation.status === 200) {
           setStatus('explained')

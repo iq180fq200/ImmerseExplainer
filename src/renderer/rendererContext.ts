@@ -1,8 +1,8 @@
 import { ipcRenderer } from 'electron';
 
 const rendererContext = {
-  explain: (context: string, phrase: string[]) => {
-    return ipcRenderer.invoke('explain',context,phrase)
+  explain: (context: string, phrase: string[],sciMode: boolean) => {
+    return ipcRenderer.invoke('explain',context,phrase,sciMode)
   },
   translate: (phrase: string) => {
     return ipcRenderer.invoke('translate',phrase)

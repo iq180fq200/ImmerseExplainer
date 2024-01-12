@@ -93,6 +93,7 @@ border-bottom: 1px solid #c65858;
     display: flex;
     justify-content: flex-end;
     margin: 10px;
+    align-items:center;
 }
 
 .flex-column{
@@ -138,6 +139,7 @@ border-bottom: 1px solid #c65858;
     display: flex;
     justify-content: space-between;
     margin: 10px;
+    align-items:center;
 }
 
 .create-anki-deck{

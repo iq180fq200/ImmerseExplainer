@@ -6,7 +6,7 @@ import {
 import translateIcon from '@assets/icons/google-translate.png'
 import React from 'react'
 import './ImmerseExplainer.css'
-import {Alert} from 'antd';
+import { Alert, Checkbox } from 'antd';
 import { logger } from '@main/logger';
 
 export interface PhraseSelectionPanelProps {
@@ -18,7 +18,7 @@ export interface PhraseSelectionPanelProps {
 }
 function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
   const context = props.context.replace(/[.,;:!?-]/g, (match) => " " + match);
-  logger.info(context)
+  const [sciMode, setSciMode] = React.useState<boolean>(false)
   const allWords = context.split(" ")
   const [alertMassage, setAlertMassage] = React.useState<string>("")
   function handleRemoveWordFromPhrase(wordIdx: number) {
@@ -39,7 +39,7 @@ function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
   }
 
   async function handleSearchSelectedWords() {
-    props.handleExplain(props.selectedWordsIdx.length === 0? "" :props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '))
+    props.handleExplain(props.selectedWordsIdx.length === 0? "" :props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '), sciMode)
   }
 
   async function handleTranslateSelectedWords() {
@@ -70,6 +70,7 @@ function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
         {words}
       </div>
       <div className={'selected-word__tools'}>
+        <Checkbox onChange={(e) => {setSciMode(e.target.checked);}}>scientific mode</Checkbox>
         <SearchOutlined onClick={handleSearchSelectedWords} className="tool"/>
         <img src={translateIcon} onClick={handleTranslateSelectedWords} className="tool icon clickable" alt={'translate into Mandarin'}/>
         <DeleteOutlined onClick={handleRemoveAllSelectedWords} className="tool"/>

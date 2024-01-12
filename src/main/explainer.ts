@@ -9,10 +9,11 @@ import { IPCReply } from '@common/IPCReply'
 export async function handleExplain(
   _event: IpcMainInvokeEvent,
   context: string,
-  phrases: string[]
+  phrases: string[],
+  sciMode: boolean
 ) {
   try {
-    const explainer = new GPTExplainer(context, phrases)
+    const explainer = new GPTExplainer(context, phrases,sciMode)
     return {
       status: 200,
       content: await explainer.getExplanation(),
@@ -40,10 +41,10 @@ export class GPTExplainer {
   private readonly prompt: string
   private connector: OpenAIApi
 
-  constructor(_context: string, _phrases: string[]) {
+  constructor(_context: string, _phrases: string[], sciMode: boolean) {
     this.context = _context
     this.phrases = _phrases
-    this.prompt = this.generatePrompt()
+    this.prompt = this.generatePrompt(sciMode)
 
     if (!config.APIKEY) {
       throw new NoAPIKeyError()
@@ -53,11 +54,15 @@ export class GPTExplainer {
     })
   }
 
-  private generatePrompt() {
+  private generatePrompt(sciMode: boolean) {
     if(this.phrases.length != 0 && this.phrases[0] != ''){
       const strPhrases = this.phrases.join('and')
       let prompt = 'What do "' + strPhrases + '" mean in "' + this.context + '"? '
-      prompt += 'Use as little token as possible to explain'
+      if(!sciMode){
+        prompt += 'Use as little token as possible to explain'
+      }else{
+        prompt = "I'm reading a scientific article" + prompt
+      }
       return prompt
     }else{
       let prompt = 'Explain "' + this.context + '"'

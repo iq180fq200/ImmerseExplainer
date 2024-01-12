@@ -11,7 +11,7 @@ describe('testing chatGPT explainer', () => {
         // }
         // config.APIKEY = process.env.CHATGPT_KEY!
         config.APIKEY = "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"
-        const explainer = new GPTExplainer("Cruise passengers return to port in Charleston and find their cars flooded", ["Cruise"])
+        const explainer = new GPTExplainer("Cruise passengers return to port in Charleston and find their cars flooded", ["Cruise"],false)
         const explain = await explainer.getExplanation()
         expect(explain !== null).toBe(true);
     });
