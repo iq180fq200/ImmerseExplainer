@@ -26,7 +26,11 @@ Download the latest version of Immerse Explainer from [here](https://github.com/
   <p align="center">
       <img width="400" alt="image" src="./assets/images/unzip.png">
   </p>
-- Open the directory in the terminal
+- Move the Immerse_Explainer.app to your Application folder.
+    <p align="center">
+        <img width="400" alt="image" src="./assets/images/app_dir.png">
+    </p>
+- In the application folder, open the terminal.
     <p align="center">
         <img width="400" alt="image" src="./assets/images/openTerminal.png">
     </p>
