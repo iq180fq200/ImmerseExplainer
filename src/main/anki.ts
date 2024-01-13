@@ -36,7 +36,7 @@ export async function handleAddFlashcard(
     '--deck_name',
     deckName,
     '--level',
-    includeCloze && str_word_indexes.length !== 0?"both":"understanding",
+    includeCloze && str_word_indexes.length !== 0?"application":"understanding",
   ];
   if(str_word_indexes.length !== 0){
     args.push('--word_indexes')

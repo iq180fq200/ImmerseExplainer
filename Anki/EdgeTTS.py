@@ -17,11 +17,15 @@ if not os.path.exists(temp_file_dir):
     os.mkdir(temp_file_dir)
 
 
-async def amain(TEXT, OUTPUT_FILE = "tmp.mp3") -> None:
+async def amain(TEXT, OUTPUT_FILE="tmp.mp3") -> None:
     """Main function"""
     OUTPUT_FILE = temp_file_dir + OUTPUT_FILE
     communicate = edge_tts.Communicate(TEXT, VOICE)
     await communicate.save(OUTPUT_FILE)
+
+
+def get_audio(TEXT, OUTPUT_FILE) -> None:
+    asyncio.run(amain(TEXT, OUTPUT_FILE))
 
 
 if __name__ == "__main__":
