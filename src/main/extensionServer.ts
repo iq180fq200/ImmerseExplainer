@@ -6,8 +6,8 @@ import { appWindow } from '@main/appWindow';
 
 
 
-// Create a server
-export const server = http.createServer((req, res) => {
+// Create a extensionServer
+export const extensionServer = http.createServer((req, res) => {
   if (req.method === 'POST') {
     let body = '';
     // Receive data in chunks
@@ -43,7 +43,7 @@ export function startExtensionServer(){
   }else{
     logger.info('Socket file does not exist, creating it...');
   }
-  server.listen(socketPath, () => {
+  extensionServer.listen(socketPath, () => {
     logger.info(`Server listening on ${socketPath}`);
   });
 

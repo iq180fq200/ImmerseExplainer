@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import { createAppWindow } from './appWindow';
-import {startExtensionServer,server} from '@main/server';
+import {startExtensionServer,extensionServer} from '@main/extensionServer';
 import { retrieveStoredAPIKey } from '@main/io';
+import { startAnkiServer } from '@main/ankiServer';
 
 /** Handle creating/removing shortcuts on Windows when installing/uninstalling. */
 if (require('electron-squirrel-startup')) {
@@ -15,6 +16,7 @@ if (require('electron-squirrel-startup')) {
  */
 app.on('ready', createAppWindow);
 app.on('ready', startExtensionServer);
+app.on('ready', startAnkiServer)
 app.on('ready',retrieveStoredAPIKey);
 
 /**
@@ -45,8 +47,8 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 
-  if(server){
-    server.close();
+  if(extensionServer){
+    extensionServer.close();
   }
 });
 
