@@ -1,23 +1,23 @@
 # Immerse Explainer
 
-OpenAI based context-aware phrase explainer for English learners. The current version is only for mac-os users.
+OpenAI-based context-aware phrase explainer for English learners. The current version is only for Mac-OS users.
 
 Core features:
-- **Context aware phrase explainer**. The explainer will automatically detect the context of the phrase and explain it accordingly. 
-- **Full English environment (You can choose to have no translation but only explanation using English)**. Many exlpert believe that the best way to learn a language is to forget your mother language. That's also the core idea behind the immerse explainer. 
+- **Context-aware phrase explainer**. The explainer will automatically detect the context of the phrase and explain it accordingly. 
+- **Full English environment (You can choose to have no translation but only explanation using English)**. Many experts believe that forgetting your mother language is the best way to learn a language. That's also the core idea behind the immerse explainer. 
 
 
 <br>
 <img src="./assets/images/example.gif" alt='example usage'/>
 
-- **Support add words to ANKI by one-click.** ANKI is a popular memory-curve based flashcard app for language learners. By adding phrases to Anki, you can then review your words using mobile or laptop.
-- **Cross Application.** You can use immerse-explainer in for any app on your PC.
+- **Support adding words to ANKI by one click.** ANKI is a popular memory-curve-based flashcard app for language learners. By adding phrases to Anki, you can then review your words using a mobile or laptop.
+- **Cross Application.** You can use immerse-explainer for any app on your PC.
 
 Special thanks to [@Codesbiome](https://github.com/codesbiome) for providing the electron-react-typescript template.
 
 # Installation (MacOS only)
 ## 1. Install Anki
-Install ANKI, a popular memory-curve based flashcard app to your computer. You can download and install it from [here](https://apps.ankiweb.net/). Make sure your Anki is open when using Immerse Explainer.
+Install ANKI, a popular memory-curve-based flashcard app to your computer. You can download and install it from [here](https://apps.ankiweb.net/). Make sure your Anki is open when using Immerse Explainer.
 ## 2. Add AnkiConnect add-on to ANKI
 AnkiConnect is a plugin for Anki that allows other programs to connect to Anki's database. You can download and install it by following the instructions [here](https://ankiweb.net/shared/info/2055492159).
 ## 3. Install Immerse Explainer
@@ -49,7 +49,7 @@ Open Immerse Explainer and click the setting icon in the bottom left corner. The
 
 # Contribute
 ## Test the Immerse Explainer in Dev-mode
-To contribute the Immerse Explainer and compile the code in dev-mode, you need to run the following commands (Note the first command below only needs to be run once if you didn't make any change to the ./Clip-extensions and ./Anki directories.):
+To contribute to the Immerse Explainer and compile the code in dev-mode, you need to run the following commands (Note the first command below only needs to be run once if you didn't make any change to the ./Clip-extensions and ./Anki directories.):
 
 ```bash
 source buildAll.bash # build the popclip extension and the Anki connector. 
