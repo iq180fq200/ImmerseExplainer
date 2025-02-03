@@ -50,6 +50,8 @@ app.on('window-all-closed', () => {
   if(extensionServer){
     extensionServer.close();
   }
+
+  // TODO: explicitly kill the Anki server process when window-all-closed
 });
 
 /**

@@ -2,6 +2,7 @@ import {
   CloseOutlined,
   DeleteOutlined,
   SearchOutlined,
+  SoundOutlined
 } from '@ant-design/icons';
 import translateIcon from '@assets/icons/google-translate.png'
 import React from 'react'
@@ -15,6 +16,7 @@ export interface PhraseSelectionPanelProps {
   context: string
   handleExplain: any
   handleTranslate: any
+  handlePronounce: any
 }
 function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
   const context = props.context.replace(/[.,;:!?-]/g, (match) => " " + match);
@@ -40,6 +42,10 @@ function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
 
   async function handleSearchSelectedWords() {
     props.handleExplain(props.selectedWordsIdx.length === 0? "" :props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '), sciMode)
+  }
+
+  async function handlePronounceSelectedWords() {
+    props.handlePronounce(props.selectedWordsIdx.map((idx: number) => allWords[idx]).join(' '))
   }
 
   async function handleTranslateSelectedWords() {
@@ -73,6 +79,7 @@ function _PhraseSelectionPanel(props: PhraseSelectionPanelProps) {
         <Checkbox onChange={(e) => {setSciMode(e.target.checked);}}>scientific mode</Checkbox>
         <SearchOutlined onClick={handleSearchSelectedWords} className="tool"/>
         <img src={translateIcon} onClick={handleTranslateSelectedWords} className="tool icon clickable" alt={'translate into Mandarin'}/>
+        <SoundOutlined onClick={handlePronounceSelectedWords} className="tool"/>
         <DeleteOutlined onClick={handleRemoveAllSelectedWords} className="tool"/>
       </div>
     </div>

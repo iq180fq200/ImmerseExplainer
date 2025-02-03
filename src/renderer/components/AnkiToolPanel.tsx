@@ -1,4 +1,4 @@
-import { Button, Checkbox, Modal } from 'antd';
+import { Button, Checkbox, Modal, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import {Select} from 'antd';
 import appAPI from '@renderer/rendererContextApi';
@@ -13,6 +13,7 @@ export interface AnkiToolPanelProps {
 export function AnkiToolPanel(props: AnkiToolPanelProps) {
   const [deckName, setDeckName] = useState<string>('Immerse Explainer')
   const [includeFillInBlankCard, setIncludeFillInBlankCard] = useState<boolean>(false)
+  const [includeQACard, setIncludeQACard] = useState<boolean>(true)
   const [options, setOptions] = useState<{
     value: string;
     label: string;
@@ -56,8 +57,18 @@ export function AnkiToolPanel(props: AnkiToolPanelProps) {
                   }
                 }}
         />
-        <Checkbox onChange={(e) => {setIncludeFillInBlankCard(e.target.checked);}}>Include Cloze Card</Checkbox>
-        <Button onClick={() => {props.handleAddToAnki(deckName,includeFillInBlankCard)}}>Add to Anki</Button>
+        <Tooltip title="Create a card with the word on the front and explanation on the back.">
+          <Checkbox onChange={(e) => {setIncludeQACard(e.target.checked);}}>
+            Understand & Recognize
+              {/*<QuestionCircleOutlined style={{ marginLeft: 5, color: '#888' }} />*/}
+          </Checkbox>
+        </Tooltip>
+        <Tooltip title="Create a card with the explanation on the front and word on the back.">
+          <Checkbox onChange={(e) => {setIncludeFillInBlankCard(e.target.checked);}}>
+            Recall & Speak
+          </Checkbox>
+        </Tooltip>
+        <Button onClick={() => {props.handleAddToAnki(deckName,includeFillInBlankCard, includeQACard)}}>Add to Anki</Button>
       </div>
       {showCreateDeckName && <CreateDeckNameModal setShowCreateDeckName={setShowCreateDeckName} options={options} setOptions={setOptions}/>}
     </div>

@@ -12,6 +12,7 @@ import './ImmerseExplainer.css'
 import { IPCReply } from '@common/IPCReply';
 import appAPI from '@renderer/rendererContextApi';
 import { AnkiToolPanel } from '@components/AnkiToolPanel';
+import { pronounceWord } from '@renderer/util/pronunce';
 
 const { TextArea } = Input
 
@@ -68,10 +69,10 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
     }
   }
 
-  async function handleAddToAnki(deckName: string, includeFillInBlankCard: boolean){
+  async function handleAddToAnki(deckName: string, includeFillInBlankCard: boolean, includeQACard: boolean){
     if (context.length && explanation.length > 0) {
       try{
-        const result = await appAPI.addToAnki(context.replace(/([.,;:!?-]) /g, (match) => " " + match), selectedWordsIdx, explanation,deckName,includeFillInBlankCard) as IPCReply
+        const result = await appAPI.addToAnki(context.replace(/([.,;:!?-]) /g, (match) => " " + match), selectedWordsIdx, explanation,deckName,includeFillInBlankCard, includeQACard) as IPCReply
         // TODO: if audioFilePath is null, get the audio
         if (result.status === 200) {
           message.info("Added to Anki")
@@ -112,12 +113,27 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
     }
   }
 
+  async function handlePronounce(QueryPhrase: string){
+    if (context.length > 0) {
+      try {
+        // const _pronounce = (await appAPI.pronunce(
+        //   QueryPhrase.length > 0?QueryPhrase:context
+        // )) as IPCReply
+        // if (_pronounce.status !== 200) {
+        //   message.error("Failed to pronounce: " + _pronounce.content)
+        // }
+        pronounceWord(QueryPhrase.length > 0?QueryPhrase:context)
+      } catch (e) {
+        // catch other errors like IPC errors
+        message.error("Failed to pronounce: " + e)
+      }
+    }
+  }
+
   function handleContextChange(e: any) {
     setSelectedWordsIdx([])
     setContext(e.target.value)
   }
-
-  async function handleSound() {}
 
   async function handleCopy() {
     appAPI.copyToClipboard(context)
@@ -150,7 +166,7 @@ export function ImmerseExplainer(props: ImmerseExplainerProps) {
     </div>
   )
 
-  const phraseSelectionPanel = <PhraseSelectionPanel selectedWordsIdx={selectedWordsIdx} setSelectedWordsIdx={setSelectedWordsIdx} context={context}  handleExplain={handleExplain} handleTranslate={handleTranslate}/>
+  const phraseSelectionPanel = <PhraseSelectionPanel selectedWordsIdx={selectedWordsIdx} setSelectedWordsIdx={setSelectedWordsIdx} context={context}  handleExplain={handleExplain} handleTranslate={handleTranslate} handlePronounce={handlePronounce}/>
   const statusPanel = <StatusPanel status={status} />
 
   const resultPanel = <div className="result-panel">{explanation}</div>

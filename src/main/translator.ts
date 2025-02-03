@@ -29,6 +29,8 @@ async function getProxyAgent() {
 
 let agent: HttpProxyAgent | undefined = undefined;
 
+// TODO: find a better translation server with less limitation (ideal) or host an open source model.
+// TODO: support more languages for the translate function.
 export async function handleTranslate(
   _event: IpcMainInvokeEvent,
   phrase: string

@@ -10,15 +10,26 @@ export async function handleAddFlashcard(
   word_indexes: number[],
   explanation: string,
   deckName: string,
-  includeCloze: boolean
+  includeCloze: boolean,
+  includeQACard: boolean
 ) {
   return new Promise<IPCReply>((resolve, reject) => {
+    let level = ""
+    if (includeCloze && word_indexes.length !== 0) {
+      if (includeQACard) {
+        level = "both"
+      }else{
+        level = "application"
+      }
+    } else{
+      level = "understanding"
+    }
     const args = {
       context: context,
       word_indexes: word_indexes,
       explanation: explanation,
       deck_name: deckName,
-      level: includeCloze && word_indexes.length !== 0?"application":"understanding",
+      level: level,
     }
 
     const client = net.createConnection({ path: "/tmp/updateDeck.sock" }, () => {

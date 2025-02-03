@@ -156,6 +156,9 @@ def process_request(data):
         my_deck.add_note(fill_in_note)
     if level == 'understanding':
         my_deck.add_note(qa_note)
+    if level == 'both':
+        my_deck.add_note(fill_in_note)
+        my_deck.add_note(qa_note)
     # create package
     package = genanki.Package(my_deck)
     package.media_files = [_get_context_audio_file_name(audio_pre), _get_phrase_audio_file_name(audio_pre)]

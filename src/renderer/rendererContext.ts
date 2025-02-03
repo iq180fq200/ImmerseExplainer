@@ -10,8 +10,8 @@ const rendererContext = {
   listenClipPopContext: (callback:any) => {ipcRenderer.on('clippopContext', (_, data) => callback(data))},
   unlistenClipPopContext: () => {ipcRenderer.removeAllListeners('clippopContext')},
   copyToClipboard: (text: string) => {ipcRenderer.invoke('copyToClipboard',text)},
-  addToAnki: (context: string, word_indexes: number[], explanation: string,deckName:string,includeCloze:boolean) => {return ipcRenderer.invoke('addToAnki',context,word_indexes,explanation,
-    deckName,includeCloze)},
+  addToAnki: (context: string, word_indexes: number[], explanation: string,deckName:string,includeCloze:boolean, includeQACard:boolean) => {return ipcRenderer.invoke('addToAnki',context,word_indexes,explanation,
+    deckName,includeCloze, includeQACard)},
   setOpenAIKey: (key: string) => {return ipcRenderer.invoke('setOpenAIKey',key)},
   getDeckNames: () => {return ipcRenderer.invoke('getDeckNames')},
 };

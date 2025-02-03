@@ -28,6 +28,8 @@ export function storeAPIKey(key: string){
   logger.info("API key stored at: "+APIFile);
 }
 
+// TODO: when decks are deleted in Anki, remove them from the mapping file.
+//  And the corresponding MP3 files for the words.
 export function getDeckNameList() {
   const dir: string = path.join(os.homedir(), ".ImmerseExplainer");
   if (!fs.existsSync(dir)) {
