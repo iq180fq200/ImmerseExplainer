@@ -6,7 +6,7 @@ import genanki
 import os
 
 from EdgeTTS import get_audio
-from connectAnki import update_deck
+from connectAnki import update_deck, get_deck_list
 from deckManager import get_deck_id
 import socket
 
@@ -128,7 +128,7 @@ def _get_phrase_audio_file_name(f_au_prefix):
     return os.path.join(ROOT_DIR, f_au_prefix + "_p" + ".mp3")
 
 
-def process_request(data):
+def process_add2Anki_request(data):
     context = data['context']
     word_indexes = data['word_indexes']
     explanation = data['explanation']
@@ -198,7 +198,14 @@ def start_server():
                 break
             # Decode and process the data
             request_data = json.loads(data.decode())
-            response = process_request(request_data)
+            print("receive data:", request_data)
+            if request_data['action'] == 'add2Anki':
+                response = process_add2Anki_request(request_data)
+            elif request_data['action'] == 'getDeckList':
+                response = get_deck_list()
+                response = json.dumps(response)
+            else:
+                response = "Invalid action"
             conn.sendall(response.encode())
 
 

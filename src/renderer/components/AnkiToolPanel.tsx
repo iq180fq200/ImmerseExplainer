@@ -1,4 +1,4 @@
-import { Button, Checkbox, Modal, Tooltip } from 'antd';
+import { Button, Checkbox, message, Modal, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import {Select} from 'antd';
 import appAPI from '@renderer/rendererContextApi';
@@ -51,24 +51,29 @@ export function AnkiToolPanel(props: AnkiToolPanelProps) {
                   if (value === NEW_DECK_NAME) {
                     setDeckName('')
                     setShowCreateDeckName(true)
-                    console.log("should show modal")
                   } else {
                     setDeckName(value)
                   }
                 }}
         />
         <Tooltip title="Create a card with the word on the front and explanation on the back.">
-          <Checkbox onChange={(e) => {setIncludeQACard(e.target.checked);}}>
+          <Checkbox checked={includeQACard} onChange={(e) => {setIncludeQACard(e.target.checked);}}>
             Understand & Recognize
               {/*<QuestionCircleOutlined style={{ marginLeft: 5, color: '#888' }} />*/}
           </Checkbox>
         </Tooltip>
         <Tooltip title="Create a card with the explanation on the front and word on the back.">
-          <Checkbox onChange={(e) => {setIncludeFillInBlankCard(e.target.checked);}}>
+          <Checkbox checked={includeFillInBlankCard} onChange={(e) => {setIncludeFillInBlankCard(e.target.checked);}}>
             Recall & Speak
           </Checkbox>
         </Tooltip>
-        <Button onClick={() => {props.handleAddToAnki(deckName,includeFillInBlankCard, includeQACard)}}>Add to Anki</Button>
+        <Button onClick={() => {
+          if (deckName === '') {
+            message.error("Please select or input a new deck name")
+            return
+          }
+          props.handleAddToAnki(deckName,includeFillInBlankCard, includeQACard)
+        }}>Add to Anki</Button>
       </div>
       {showCreateDeckName && <CreateDeckNameModal setShowCreateDeckName={setShowCreateDeckName} options={options} setOptions={setOptions}/>}
     </div>
@@ -94,7 +99,6 @@ function CreateDeckNameModal(props: CreateDeckNameModalProps) {
   const handleCancel = () => {
     props.setShowCreateDeckName(false)
   }
-  console.log("modal rendered")
 
   return (
       <div className={"create-anki-deck"}>

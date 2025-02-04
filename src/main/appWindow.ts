@@ -1,12 +1,12 @@
 import { app, BrowserWindow, ipcMain,clipboard } from 'electron';
 import path from 'path';
 import { handleExplain } from '@main/explainer';
-import { handleAddFlashcard } from '@main/anki';
+import { getDeckNameList, handleAddFlashcard } from '@main/anki';
 import { config } from '@main/config';
 import { logger } from '@main/logger';
 import { IPCReply } from '@common/IPCReply';
 import { handleTranslate } from '@main/translator';
-import { getDeckNameList, storeAPIKey } from '@main/io';
+import { storeAPIKey } from '@main/io';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;

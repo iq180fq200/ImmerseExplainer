@@ -25,6 +25,7 @@ export async function handleAddFlashcard(
       level = "understanding"
     }
     const args = {
+      action: 'add2Anki',
       context: context,
       word_indexes: word_indexes,
       explanation: explanation,
@@ -63,6 +64,46 @@ export async function handleAddFlashcard(
 
     client.on('close', () => {
       logger.info('Connection to anki handler closed');
+    });
+  })
+}
+
+export async function getDeckNameList() {
+
+  return new Promise<IPCReply>((resolve, reject) => {
+
+    const args = {
+      action: 'getDeckList'
+    }
+
+    const client = net.createConnection({ path: "/tmp/updateDeck.sock" }, () => {
+      logger.info('Connected to server!');
+      client.write(JSON.stringify(args));
+    });
+
+    client.on('data', (data: Buffer) => {
+      try {
+        // Convert the Buffer to a string and parse it as JSON
+        const jsonString = data.toString('utf8');
+        const deckList: string[] = JSON.parse(jsonString);
+
+        // Log the received deck list
+        logger.info('Received deck list:', deckList);
+
+        // Resolve with the deck list as content
+        resolve({
+          status: 200,
+          content: deckList,
+        } as IPCReply);
+      } catch (error) {
+        logger.error('Error parsing deck list:', error);
+        reject({
+          status: 500,
+          content: `Error parsing deck list: ${error}`,
+        } as IPCReply);
+      } finally {
+        client.destroy(); // Close the connection after receiving the response
+      }
     });
   })
 }
