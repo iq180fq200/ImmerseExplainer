@@ -16,7 +16,7 @@ Additionally, Immerse Explainer seamlessly integrates with ANKI, a popular flash
    AnkiConnect is a plugin that allows Immerse Explainer to communicate with ANKI’s database. Follow the instructions on the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) page to install it.
 
 ## 3. Install Immerse Explainer
-Download the latest version of Immerse Explainer from [the release page](https://github.com/iq180fq200/ImmerseExplainer/releases/download/v1.1/Immerse_Explainer-darwin-arm64-7.8.0.zip). Then, follow the instructions below to install it:
+Download the latest version of Immerse Explainer from [the release page](https://github.com/iq180fq200/ImmerseExplainer/releases/download/v1.2/Immerse_Explainer-darwin-arm64-7.8.0.zip). Then, follow the instructions below to install it:
 - Unzip the downloaded file by double-clicking it. Then you should see the following files:
   <p align="center">
       <img width="400" alt="image" src="./assets/images/unzip.png">
