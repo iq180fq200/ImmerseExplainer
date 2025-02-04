@@ -51,7 +51,6 @@ If you want to contribute or run Immerse Explainer in development mode, follow t
 Run the following command (the first command only needs to be run once unless changes are made to the ./Clip-extensions or ./Anki directories):
 
 ```bash
-Copy
 source buildAll.bash  # Builds the PopClip extension and the Anki connector.
 npm start             # Launches the Immerse Explainer app in dev mode.
 ```
