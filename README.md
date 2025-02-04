@@ -1,63 +1,63 @@
-# Immerse Explainer
+# Immerse Explainer: Learn Language as Native Speakers
 
-OpenAI-based context-aware phrase explainer for English learners. The current version is only for Mac-OS users.
+Immerse Explainer is an AI-driven, context-aware phrase explainer designed for language learners. Note: The current version supports MacOS only.
 
-Core features:
-- **Context-aware phrase explainer**. The explainer will automatically detect the context of the phrase and explain it accordingly. 
-- **Full English environment (You can choose to have no translation but only explanation using English)**. Many experts believe that forgetting your mother language is the best way to learn a language. That's also the core idea behind the immerse explainer. 
+Instead of merely translating phrases, Immerse Explainer provides explanations based on the context in which you encountered them. This approach helps you think directly in your target language—a method native speakers use and many experts believe accelerates language learning.
 
-
-<br>
-<img src="./assets/images/example.gif" alt='example usage'/>
-
-- **Support adding words to ANKI by one click.** ANKI is a popular memory-curve-based flashcard app for language learners. By adding phrases to Anki, you can then review your words using a mobile or laptop.
-- **Cross Application.** You can use immerse-explainer for any app on your PC.
-
-Special thanks to [@Codesbiome](https://github.com/codesbiome) for providing the electron-react-typescript template.
+Additionally, Immerse Explainer seamlessly integrates with ANKI, a popular flashcard app that leverages the memory curve for efficient learning. With just one click, you can add phrases to ANKI for convenient review across your devices.
+<br><div align="center">
+<img src="./assets/images/example.gif" alt='example usage'/></div>
 
 # Installation (MacOS only)
-## 1. Install Anki
-Install ANKI, a popular memory-curve-based flashcard app to your computer. You can download and install it from [here](https://apps.ankiweb.net/). Make sure your Anki is open when using Immerse Explainer.
-## 2. Add AnkiConnect add-on to ANKI
-AnkiConnect is a plugin for Anki that allows other programs to connect to Anki's database. You can download and install it by following the instructions [here](https://ankiweb.net/shared/info/2055492159).
+## 1. Install ANKI
+   Download and install ANKI from the [official website](https://apps.ankiweb.net/). Make sure ANKI is open when you use Immerse Explainer.
+
+## 2. Add the AnkiConnect Add-on
+   AnkiConnect is a plugin that allows Immerse Explainer to communicate with ANKI’s database. Follow the instructions on the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) page to install it.
+
 ## 3. Install Immerse Explainer
-Download the latest version of Immerse Explainer from [here]
-(https://github.com/iq180fq200/ImmerseExplainer/releases/download/v1.1/Immerse_Explainer-darwin-arm64-7.8.0.zip). Then, follow the instructions below to install it:
-- Unzip the downloaded file by double-clicking it. Then you should get the following:
+Download the latest version of Immerse Explainer from [the release page](https://github.com/iq180fq200/ImmerseExplainer/releases/download/v1.1/Immerse_Explainer-darwin-arm64-7.8.0.zip). Then, follow the instructions below to install it:
+- Unzip the downloaded file by double-clicking it. Then you should see the following files:
   <p align="center">
       <img width="400" alt="image" src="./assets/images/unzip.png">
   </p>
-- Move the Immerse_Explainer.app to your Application folder.
+- Move the Immerse_Explainer.app file to your Applications folder.
     <p align="center">
         <img width="400" alt="image" src="./assets/images/app_dir.png">
     </p>
-- In the application folder, open the terminal.
+- Open terminal in the Applications folder.
     <p align="center">
         <img width="400" alt="image" src="./assets/images/openTerminal.png">
     </p>
-- Run the following command in the terminal:
+- Run the following command in the terminal to remove quarantine attributes:
     ```bash
     xattr -cr Immerse_Explainer.app
     ```
-- Double click the Immerse_Explainer.app to open it.
-## 4. Optional: Install Immerse Explainer PopClip Extension
-If you want to have your selected text automatically pasted to Immerse Explainer, you can install PopClip and the Immerse Explainer PopClip extension by following the instructions [here](./PopClip.md)
+- Double-click the Immerse_Explainer.app to launch the application.
+## 4. Optional: Install the Immerse Explainer PopClip Extension
+If you’d like your selected text to be automatically sent to Immerse Explainer, install PopClip and add the Immerse Explainer PopClip extension by following the instructions [here](./PopClip.md)
+<p align="center">
+    <img width="600" src="assets/images/popclip_ext_effect.gif"/>
+</p>
 <br>
 
-# Configure Immerse Explainer
+# Configuration
 ## Add your openAI API key
-Open Immerse Explainer and click the setting icon in the bottom left corner. Then add your openAI API key to the input box. Note that you must purchase your token [here](https://platform.openai.com/usage) for your openAI key to be valid. You can get your openAI API key from [here](https://platform.openai.com/api-keys).
+Open Immerse Explainer and click the settings icon in the bottom left corner. Then enter your openAI API key into the input box. Note that you must purchase your token [here](https://platform.openai.com/usage) for your API keys to work. You can obtain your API key from [here](https://platform.openai.com/api-keys).
 
-# Contribute
+# Contributing
 ## Test the Immerse Explainer in Dev-mode
-To contribute to the Immerse Explainer and compile the code in dev-mode, you need to run the following commands (Note the first command below only needs to be run once if you didn't make any change to the ./Clip-extensions and ./Anki directories.):
+If you want to contribute or run Immerse Explainer in development mode, follow these steps:
+Run the following command (the first command only needs to be run once unless changes are made to the ./Clip-extensions or ./Anki directories):
 
 ```bash
-source buildAll.bash # build the popclip extension and the Anki connector. 
-npm start  # build the ImmerseExplainer app
+Copy
+source buildAll.bash  # Builds the PopClip extension and the Anki connector.
+npm start             # Launches the Immerse Explainer app in dev mode.
 ```
-## Build the Immerse Explainer in Production mode
-To get the production-mode executable program, run the following commands in order:
+
+## Building in Production mode
+To compile a production-ready version of Immerse Explainer:
 ```bash
 source buildAll.bash # build the popclip extension and the Anki connector
 npm run make # build the ImmerseExplainer app
@@ -66,3 +66,6 @@ The executable program will be in the ./out directory. And the popclip extension
 
 # License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+# Special Thanks
+Special thanks to [@Codesbiome](https://github.com/codesbiome) for providing the electron-react-typescript template.
