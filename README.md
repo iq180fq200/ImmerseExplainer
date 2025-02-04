@@ -47,8 +47,7 @@ Open Immerse Explainer and click the settings icon in the bottom left corner. Th
 
 # Contributing
 ## Test the Immerse Explainer in Dev-mode
-If you want to contribute or run Immerse Explainer in development mode, follow these steps:
-Run the following command (the first command only needs to be run once unless changes are made to the ./Clip-extensions or ./Anki directories):
+If you want to contribute or run Immerse Explainer in development mode, follow these steps (the first command only needs to be run once unless changes are made to the ./Clip-extensions or ./Anki directories):
 
 ```bash
 source buildAll.bash  # Builds the PopClip extension and the Anki connector.
